@@ -3,6 +3,11 @@
 composer install
 ```
 
+## Project setup Migrations
+```
+php artisan migrate
+```
+
 ## Project setup Login Screen
 ```
 npm install
@@ -18,6 +23,8 @@ php artisan run serve
 npm run dev
 ```
 
+## MySQL
+Não esquecer de criar setar os dados no arquivo .env com o banco que criar
 
 ## Contributing
 
