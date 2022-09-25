@@ -16,15 +16,16 @@ use App\Http\Controllers\DistrictsController;
 */
 
 Route::get('/', [CitiesController::class, 'index']);
-Route::get('/cities/create', [CitiesController::class, 'create']);
+Route::get('/cities/create', [CitiesController::class, 'create'])->middleware('auth');
 Route::get('/cities/list', [CitiesController::class, 'list']);
 Route::get('/cities/{id}', [CitiesController::class, 'show']);
 Route::post('/cities', [CitiesController::class, 'store']);
 Route::get('/cities', function () {
     return view('/cities');
 });
-Route::get('/districts/create', [DistrictsController::class, 'create']);
+Route::get('/districts/create', [DistrictsController::class, 'create'])->middleware('auth');
 Route::get('/districts/list', [DistrictsController::class, 'show']);
+Route::get('/districts/list', [DistrictsController::class, 'list']);
 Route::post('/districts', [DistrictsController::class, 'store']);
 Route::get('/districts', function () {
     return view('/districts');
@@ -38,3 +39,4 @@ Route::get('/districts', function () {
 // Route::get('/cities/{cities}', function ($cities = null) {
 //     return view('cities', ['cities' => $cities]);
 // });
+Route::get('/dashboard', [CitiesController::class, 'index']);

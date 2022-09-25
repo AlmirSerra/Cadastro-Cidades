@@ -47,6 +47,9 @@ class CitiesController extends Controller
       $city->image = $imageName;
     }
 
+    $user = auth()->user();
+    $city->user_id = $user->id;
+
     $city->save();
 
     return redirect('/')->with('msg', 'Cidade cadastrada com sucesso!');

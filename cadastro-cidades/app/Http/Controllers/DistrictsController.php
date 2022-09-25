@@ -28,6 +28,9 @@ class DistrictsController extends Controller
         $district->bairro = $request->district;
         $district->cidade = $request->city;
   
+        $user = auth()->user();
+        $district->user_id = $user->id;
+
         $district->save();
   
       return redirect('/')->with('msg', 'Bairro cadastrado com sucesso!');
@@ -38,5 +41,18 @@ class DistrictsController extends Controller
         $district = Districts::all();
 
         return view('events.list_districts', ['district' => $district]);
+    }
+
+    public function list() {
+      $search = request('search');
+
+      if($search) {
+        $district = Districts::where([
+          ['bairro', 'like', '%'.$search.'%']
+        ])->get();
+      }else {
+        $district = Districts::all();
+      }
+      return view('events.list_districts', ['district' => $district]);
     }
 }

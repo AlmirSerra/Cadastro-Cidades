@@ -30,6 +30,7 @@
           <li class="nav-item">
             <a href="/districts/list" class="nav-link">Bairros</a>
           </li>
+          @auth
           <li class="nav-item">
             <a href="/districts/create" class="nav-link">Adicionar Bairros</a>
           </li>
@@ -37,8 +38,20 @@
             <a href="/cities/create" class="nav-link">Adicionar Cidade</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">Login</a>
+            <form action="/logout" method="POST">
+              @csrf
+              <a href="/logout" class="nav-link" onclick="event.preventDefault();this.closest('form').submit();">Sair</a>
+            </form>
           </li>
+          @endauth
+          @guest
+          <li class="nav-item">
+            <a href="/register" class="nav-link">Cadastrar</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+          @endguest
         </ul>
       </div>
     </nav>
